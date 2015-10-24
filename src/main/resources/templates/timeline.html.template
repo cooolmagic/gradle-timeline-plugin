@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+        body {
+            font-family: helvetica, sans-serif;
+            padding: 12px;
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        #build_chart {
+            width: auto;
+            height: 1200px;
+        }
+    </style>
+    <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization',
+       'version':'1','packages':['timeline']}]}"></script>
+
+
+    <script type="text/javascript">
+        google.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var container = document.getElementById('build_chart');
+            var chart = new google.visualization.Timeline(container);
+            var dataTable = new google.visualization.DataTable();
+
+            dataTable.addColumn({type: 'string', id: 'Module'});
+            dataTable.addColumn({type: 'string', id: 'Task'});
+            dataTable.addColumn({type: 'date', id: 'Start'});
+            dataTable.addColumn({type: 'date', id: 'End'});
+
+            dataTable.addRows([
+                <% entries.each { entry -> %>
+                    ['${entry.module}', '${entry.task}', new Date(0, 0, 0, ${entry.startTime}), new Date(0, 0, 0, ${entry.endTime})],
+                <% } %>
+            ]);
+
+            var options = {
+              hAxis: {
+                format: 'mm:ss',
+              }
+            };
+
+            chart.draw(dataTable, options);
+        }
+    </script>
+</head>
+<body>
+
+<h2>Build Timeline (${totalTime})</h2>
+<div id="build_chart"></div>
+
+</body>
+</html>
