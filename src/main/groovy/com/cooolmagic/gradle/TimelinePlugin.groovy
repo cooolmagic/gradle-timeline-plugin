@@ -42,7 +42,7 @@ class TimelinePlugin implements Plugin<Project> {
                         fileMode = 0554
 
                         rename { file -> 'index.html' }
-                        expand(entries: project.timeline.timelineEntries, totalTime: totalTime)
+                        expand(entries: project.timeline.timelineEntries, totalTime: totalTime, thresholdTimeMillis: project.timeline.thresholdTimeMillis)
                     }
                 }
             }

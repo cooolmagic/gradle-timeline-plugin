@@ -14,7 +14,7 @@ apply plugin: 'maven'
 apply plugin: "com.gradle.plugin-publish"
 
 group 'com.cooolmagic.gradle'
-version '1.0'
+version '1.0.5'
 
 repositories {
     jcenter()
@@ -35,7 +35,7 @@ uploadArchives {
 }
 
 pluginBundle {
-    website = 'http://www.gradle.org/'
+    website = 'https://github.com/cooolmagic/gradle-timeline-plugin'
     vcsUrl = 'https://github.com/cooolmagic/gradle-timeline-plugin'
     description = 'Plugin to generate timeline view of Gradle build run'
     tags = ['timeline', 'profile']

@@ -36,6 +36,9 @@
                 <% entries.each { entry -> %>
                     ['${entry.module}', '${entry.task}', new Date(0, 0, 0, ${entry.startTime}), new Date(0, 0, 0, ${entry.endTime})],
                 <% } %>
+                <% if (entries.size() == 0) { %>
+                    ['No tasks above threshold ${thresholdTimeMillis}ms', '', new Date(0, 0, 0, 12, 0, 0), new Date(0, 0, 0, 12, 0, 0)]
+                <% } %>
             ]);
 
             var options = {
